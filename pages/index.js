@@ -1,8 +1,22 @@
 import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../styles/Home.module.css'
+import Link from 'next/link'
+import { useRouter } from 'next/router'
 
 export default function Home() {
+    const router = useRouter();
+    
+    function goToDetailPage () {
+        router.push({
+            pathname: '/posts/[postId]',
+            query: {
+                postId: 123,
+                ref: 'social'
+            }
+        })
+    }
+
 return (
     <div className={styles.container}>
     <Head>
@@ -20,6 +34,11 @@ return (
         Get started by editing{' '}
         <code className={styles.code}>pages/index.js</code>
         </p>
+
+        <Link href="/about">
+            Go to About
+        </Link>
+        <button onClick={goToDetailPage}>Go to post detail page</button>
 
         <div className={styles.grid}>
         <a href="https://nextjs.org/docs" className={styles.card}>
